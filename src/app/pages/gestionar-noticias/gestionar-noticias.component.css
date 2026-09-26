@@ -1,0 +1,132 @@
+.admin-page {
+  padding-top: 52px;
+}
+
+.admin-page__intro h1 {
+  margin: 14px 0 10px;
+  font-size: clamp(2.3rem, 4vw, 3.7rem);
+  color: #101619;
+}
+
+.admin-page__intro p {
+  margin: 0 0 24px;
+  color: #4c5965;
+}
+
+.eyebrow {
+  display: inline-block;
+  background: rgba(214, 165, 87, 0.12);
+  color: #7d4a13;
+  border-radius: 999px;
+  padding: 0.44rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 28px;
+}
+
+.admin-form,
+.admin-list {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: 0 18px 32px rgba(17, 17, 17, 0.04);
+}
+
+.field-group {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.field-group label {
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.field-group input,
+.field-group textarea,
+.field-group select {
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  border-radius: 12px;
+  padding: 0.85rem 0.95rem;
+  background: #f9fafb;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #1d2936;
+  margin: 14px 0 20px;
+}
+
+.submit-btn {
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #d7a557, #a85d2a);
+  color: #111;
+  padding: 0.9rem 1.5rem;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.admin-list h2 {
+  margin-top: 0;
+}
+
+.admin-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.admin-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.admin-list strong,
+.admin-list span {
+  display: block;
+}
+
+.admin-list span {
+  margin-top: 4px;
+  color: #475467;
+}
+
+.admin-list button {
+  border: none;
+  border-radius: 999px;
+  background: #111827;
+  color: white;
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}

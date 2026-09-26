@@ -1,0 +1,67 @@
+<section class="container admin-page">
+  <div class="admin-page__intro">
+    <span class="eyebrow">Administración</span>
+    <h1>Gestión de noticias</h1>
+    <p>Crea y elimina contenidos de forma rápida para mantener el periódico actualizado.</p>
+  </div>
+
+  <div class="admin-grid">
+    <form [formGroup]="formulario" (ngSubmit)="guardarNoticia()" class="admin-form">
+      <div class="field-group">
+        <label for="titulo">Título</label>
+        <input id="titulo" type="text" formControlName="titulo" />
+      </div>
+
+      <div class="field-group">
+        <label for="categoria">Categoría</label>
+        <select id="categoria" formControlName="categoria">
+          <option value="Educación">Educación</option>
+          <option value="Tecnología">Tecnología</option>
+          <option value="Turismo">Turismo</option>
+          <option value="Comercio">Comercio</option>
+          <option value="General">General</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="descripcion">Descripción breve</label>
+        <textarea id="descripcion" rows="3" formControlName="descripcion"></textarea>
+      </div>
+
+      <div class="field-group">
+        <label for="contenido">Contenido completo</label>
+        <textarea id="contenido" rows="5" formControlName="contenido"></textarea>
+      </div>
+
+      <div class="field-group">
+        <label for="autor">Autor</label>
+        <input id="autor" type="text" formControlName="autor" />
+      </div>
+
+      <div class="field-group">
+        <label for="imagen">URL de imagen</label>
+        <input id="imagen" type="url" formControlName="imagen" />
+      </div>
+
+      <label class="checkbox-row">
+        <input type="checkbox" formControlName="destacado" />
+        <span>Marcar como noticia destacada</span>
+      </label>
+
+      <button type="submit" class="submit-btn">Guardar noticia</button>
+    </form>
+
+    <div class="admin-list">
+      <h2>Noticias actuales</h2>
+      <ul>
+        <li *ngFor="let noticia of noticias">
+          <div>
+            <strong>{{ noticia.titulo }}</strong>
+            <span>{{ noticia.categoria }}</span>
+          </div>
+          <button type="button" (click)="eliminarNoticia(noticia.id)">Eliminar</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

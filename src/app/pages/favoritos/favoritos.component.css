@@ -1,0 +1,60 @@
+.page-hero {
+  padding: 54px 0 16px;
+}
+
+.page-hero h1 {
+  margin: 14px 0 10px;
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  color: #0f172a;
+}
+
+.page-hero p {
+  margin: 0;
+  color: #4c5965;
+  font-size: 1.05rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  background: rgba(214, 165, 87, 0.12);
+  color: #7d4a13;
+  border-radius: 999px;
+  padding: 0.44rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  padding: 20px 0 0;
+}
+
+.empty-state {
+  padding: 36px 0 0;
+}
+
+.empty-state h2 {
+  margin-bottom: 10px;
+}
+
+.primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.9rem 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: linear-gradient(135deg, #d7a557, #a85d2a);
+  color: #111;
+}
+
+@media (max-width: 900px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,255 @@
+.hero {
+  padding: 40px 0 26px;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 42px;
+  min-height: 480px;
+}
+
+.eyebrow {
+  display: inline-block;
+  background: rgba(178, 61, 47, 0.12);
+  color: #b23d2f;
+  padding: 0.44rem 0.8rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.eyebrow--muted {
+  background: rgba(17, 24, 39, 0.06);
+  color: #4b5563;
+}
+
+.hero__content h1 {
+  margin: 18px 0 16px;
+  font-size: clamp(2.8rem, 4vw, 4.4rem);
+  line-height: 0.96;
+  letter-spacing: -0.06em;
+  color: #111827;
+  font-family: Georgia, 'Times New Roman', serif;
+  max-width: 640px;
+}
+
+.hero__content p {
+  max-width: 560px;
+  color: #4a5561;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.primary-btn,
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  min-height: 52px;
+  padding: 0.85rem 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.primary-btn {
+  background: #b23d2f;
+  color: #fff;
+  border: 1px solid #b23d2f;
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 1px solid rgba(17, 24, 39, 0.3);
+  color: #111827;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+  transform: translateY(-1px);
+}
+
+.hero__spotlight {
+  position: relative;
+  min-height: 360px;
+  background: #e3dfd9;
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.hero__spotlight img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero__spotlight-content {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 20px 26px 18px;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.68) 100%);
+  color: #fff;
+}
+
+.hero__spotlight-content span {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.hero__spotlight-content h2 {
+  margin: 8px 0 0;
+  font-size: clamp(1.5rem, 2vw, 2.2rem);
+  line-height: 1.2;
+}
+
+.section {
+  padding-top: 72px;
+}
+
+.section--soft {
+  background: #f6f4f0;
+  padding-bottom: 72px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.section-heading h2 {
+  margin: 10px 0 0;
+  font-size: clamp(2rem, 2.6vw, 2.8rem);
+  color: #111827;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.text-link {
+  color: #b23d2f;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.latest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.latest-item {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 18px;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(16, 22, 25, 0.05);
+  padding: 14px;
+}
+
+.latest-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.latest-item span {
+  display: inline-block;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(178, 61, 47, 0.1);
+  color: #b23d2f;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.latest-item h3 {
+  margin: 12px 0 10px;
+  font-size: 1.2rem;
+}
+
+.latest-item p {
+  margin: 0 0 12px;
+  color: #545f68;
+  line-height: 1.6;
+}
+
+.latest-item a {
+  color: #1b1d1f;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.cta-card {
+  border-radius: 22px;
+  padding: 28px;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+
+.cta-card--dark {
+  background: linear-gradient(135deg, #111827, #1d2a38);
+  color: white;
+}
+
+.cta-card--light {
+  background: #f5efe8;
+  color: #101619;
+}
+
+.cta-card h3 {
+  margin: 0;
+  font-size: clamp(1.5rem, 2vw, 2.2rem);
+}
+
+.cta-card p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .hero__grid,
+  .news-grid,
+  .cta-grid,
+  .latest-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__grid {
+    min-height: auto;
+  }
+}
