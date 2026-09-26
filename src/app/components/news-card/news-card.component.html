@@ -1,0 +1,27 @@
+<article class="news-card">
+  <div class="news-card__media">
+    <img [src]="noticia.imagen" [alt]="noticia.titulo" />
+    <button
+      type="button"
+      class="favorite-toggle"
+      [class.active]="isFavorite"
+      (click)="toggleFavorito($event)"
+      aria-label="Agregar a favoritos"
+    >
+      ♥
+    </button>
+  </div>
+
+  <div class="news-card__body">
+    <span class="news-card__category">{{ noticia.categoria }}</span>
+    <h3>{{ noticia.titulo }}</h3>
+    <p>{{ noticia.descripcion }}</p>
+
+    <div class="news-card__meta">
+      <span>{{ noticia.fecha }}</span>
+      <span>{{ noticia.autor }}</span>
+    </div>
+
+    <a class="news-card__button" [routerLink]="['/detalle-noticia', noticia.id]">Ver más</a>
+  </div>
+</article>

@@ -1,0 +1,24 @@
+<header class="topbar">
+  <div class="topbar__date container">
+    <span>{{ currentDate }}</span>
+    <span>Bogotá, Colombia</span>
+  </div>
+
+  <div class="container topbar__inner">
+    <a class="brand" routerLink="/">
+      <span class="brand__text">Noti<span>Web</span></span>
+      <span class="brand__tag">PLATAFORMA DE NOTICIAS</span>
+    </a>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <a
+        *ngFor="let item of navItems"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+      >
+        {{ item.label }}
+      </a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,49 @@
+<section class="container detail" *ngIf="noticia; else emptyState">
+  <div class="detail__header">
+    <span class="eyebrow">{{ noticia.categoria }}</span>
+    <button type="button" class="favorite-btn" (click)="toggleFavorite()">
+      {{ isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos' }}
+    </button>
+  </div>
+
+  <div class="detail__title-wrap">
+    <h1>{{ noticia.titulo }}</h1>
+    <p>{{ noticia.descripcion }}</p>
+  </div>
+
+  <div class="detail__content-wrap">
+    <img class="detail__image" [src]="noticia.imagen" [alt]="noticia.titulo" />
+
+    <aside class="detail__aside">
+      <h3>Información de la nota</h3>
+      <ul>
+        <li><strong>Autor:</strong> {{ noticia.autor }}</li>
+        <li><strong>Fecha:</strong> {{ noticia.fecha }}</li>
+        <li><strong>Categoría:</strong> {{ noticia.categoria }}</li>
+      </ul>
+
+      <a class="primary-btn" routerLink="/contacto">Contacto</a>
+    </aside>
+  </div>
+
+  <div class="detail__meta">
+    <span>Por {{ noticia.autor }}</span>
+    <span>{{ noticia.fecha }}</span>
+  </div>
+
+  <div class="detail__content">
+    <p>{{ noticia.contenido }}</p>
+  </div>
+
+  <div class="detail__actions">
+    <a class="secondary-btn" routerLink="/noticias">Volver a noticias</a>
+  </div>
+</section>
+
+<ng-template #emptyState>
+  <section class="container empty-state">
+    <h2>Noticia no encontrada</h2>
+    <p>La publicación solicitada no existe o fue eliminada.</p>
+    <a class="primary-btn" routerLink="/noticias">Volver al listado</a>
+  </section>
+</ng-template>

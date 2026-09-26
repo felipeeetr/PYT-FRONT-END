@@ -1,0 +1,19 @@
+<section class="page-hero container">
+  <span class="eyebrow">Guardadas</span>
+  <h1>Favoritos</h1>
+  <p>Consulta las historias que más te interesan y accede a su detalle cuando quieras.</p>
+</section>
+
+<section class="container" *ngIf="noticias.length > 0; else emptyState">
+  <div class="news-grid">
+    <app-news-card *ngFor="let noticia of noticias" [noticia]="noticia"></app-news-card>
+  </div>
+</section>
+
+<ng-template #emptyState>
+  <section class="container empty-state">
+    <h2>Aún no tienes favoritos</h2>
+    <p>Guarda alguna noticia para verla aquí más adelante.</p>
+    <a class="primary-btn" routerLink="/noticias">Explorar noticias</a>
+  </section>
+</ng-template>

@@ -1,0 +1,78 @@
+<section class="hero">
+  <div class="container hero__grid">
+    <div class="hero__content">
+      <span class="eyebrow">BIENVENIDO</span>
+      <h1>Las noticias que te interesan, en un solo lugar</h1>
+      <p>
+        Explora noticias educativas, tecnológicas, turísticas y comerciales. Guarda las que más te
+        gusten en tu lista de favoritos y consulta el detalle completo de cada una.
+      </p>
+
+      <div class="hero__actions">
+        <a class="primary-btn" routerLink="/noticias">Explorar noticias</a>
+        <a class="secondary-btn" routerLink="/contacto">Contáctanos</a>
+      </div>
+    </div>
+
+    <div class="hero__spotlight">
+      <img [src]="featured[0].imagen" [alt]="featured[0].titulo" />
+      <div class="hero__spotlight-content">
+        <span>{{ featured[0].categoria }}</span>
+        <h2>{{ featured[0].titulo }}</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow eyebrow--muted">Destacadas</span>
+      <h2>Temas del momento</h2>
+    </div>
+    <a routerLink="/noticias" class="text-link">Ver todas</a>
+  </div>
+
+  <div class="news-grid">
+    <app-news-card *ngFor="let noticia of featured" [noticia]="noticia"></app-news-card>
+  </div>
+</section>
+
+<section class="section section--soft container">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow eyebrow--muted">Últimas</span>
+      <h2>Lo más reciente</h2>
+    </div>
+  </div>
+
+  <div class="latest-grid">
+    <article *ngFor="let noticia of latestNews" class="latest-item">
+      <img [src]="noticia.imagen" [alt]="noticia.titulo" />
+      <div>
+        <span>{{ noticia.categoria }}</span>
+        <h3>{{ noticia.titulo }}</h3>
+        <p>{{ noticia.descripcion }}</p>
+        <a [routerLink]="['/detalle-noticia', noticia.id]">Leer más</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="cta-grid">
+    <article class="cta-card cta-card--dark">
+      <span class="eyebrow">Educación</span>
+      <h3>Proyectos y aprendizajes del futuro</h3>
+      <p>Explora estrategias que impulsan nuevas experiencias y oportunidades para estudiantes.</p>
+      <a routerLink="/noticias" class="secondary-btn">Ir a educación</a>
+    </article>
+
+    <article class="cta-card cta-card--light">
+      <span class="eyebrow eyebrow--muted">Comunidad</span>
+      <h3>Noticias y experiencias de negocios</h3>
+      <p>Descubre historias de emprendedores, comercio y servicios locales que están creciendo.</p>
+      <a routerLink="/noticias" class="primary-btn">Ver secciones</a>
+    </article>
+  </div>
+</section>

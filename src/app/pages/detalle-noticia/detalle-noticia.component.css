@@ -1,0 +1,143 @@
+.detail {
+  padding-top: 52px;
+}
+
+.detail__header,
+.detail__meta,
+.detail__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.eyebrow {
+  display: inline-block;
+  background: rgba(178, 61, 47, 0.12);
+  color: #b23d2f;
+  border-radius: 999px;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.favorite-btn {
+  border: none;
+  background: #b23d2f;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.8rem 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.detail__title-wrap {
+  margin: 18px 0 24px;
+}
+
+.detail__title-wrap h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  color: #101619;
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.05em;
+}
+
+.detail__title-wrap p {
+  margin: 0;
+  font-size: 1.13rem;
+  line-height: 1.7;
+  color: #475560;
+}
+
+.detail__content-wrap {
+  display: grid;
+  grid-template-columns: 1.5fr 0.7fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.detail__image {
+  width: 100%;
+  height: min(60vh, 560px);
+  object-fit: cover;
+  box-shadow: 0 20px 40px rgba(17, 17, 17, 0.12);
+}
+
+.detail__aside {
+  background: #111827;
+  color: #fff;
+  padding: 24px 20px;
+  min-height: 250px;
+}
+
+.detail__aside h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+}
+
+.detail__aside ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  display: grid;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.detail__meta {
+  margin-top: 18px;
+  color: #52606d;
+  font-weight: 600;
+}
+
+.detail__content {
+  margin-top: 36px;
+  max-width: 820px;
+}
+
+.detail__content p {
+  font-size: 1.08rem;
+  line-height: 1.9;
+  color: #2d3740;
+}
+
+.primary-btn,
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.9rem 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.primary-btn {
+  background: #b23d2f;
+  color: #fff;
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 1px solid rgba(16, 22, 25, 0.2);
+  color: #101619;
+}
+
+.empty-state {
+  padding: 72px 0 30px;
+}
+
+.empty-state h2 {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+  .detail__content-wrap {
+    grid-template-columns: 1fr;
+  }
+}

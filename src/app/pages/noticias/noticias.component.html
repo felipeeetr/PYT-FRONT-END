@@ -1,0 +1,31 @@
+<section class="page-hero container">
+  <span class="eyebrow">Inicio / Noticias</span>
+  <h1>Listado de noticias</h1>
+</section>
+
+<section class="container toolbar">
+  <div class="filters">
+    <button
+      *ngFor="let categoria of categorias"
+      type="button"
+      [class.active]="categoriaSeleccionada === categoria"
+      (click)="cambiarCategoria(categoria)"
+    >
+      {{ categoria }}
+    </button>
+  </div>
+
+  <div class="search-box">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar noticia..." />
+  </div>
+</section>
+
+<section class="container results">
+  <p>{{ noticiasFiltradas.length }} noticias encontradas</p>
+</section>
+
+<section class="container">
+  <div class="news-grid">
+    <app-news-card *ngFor="let noticia of noticiasFiltradas" [noticia]="noticia"></app-news-card>
+  </div>
+</section>

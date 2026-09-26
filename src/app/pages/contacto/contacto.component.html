@@ -1,0 +1,58 @@
+<section class="container contact-page">
+  <div class="contact-page__intro">
+    <span class="eyebrow">Contacto</span>
+    <h1>Escríbenos</h1>
+    <p>Cuéntanos sobre una historia, una idea o una colaboración con la comunidad.</p>
+  </div>
+
+  <div class="contact-layout">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="contact-form">
+      <div class="field-group">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" formControlName="nombre" placeholder="Tu nombre" />
+        <small *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.invalid">
+          Este campo es obligatorio.
+        </small>
+      </div>
+
+      <div class="field-group">
+        <label for="email">Correo electrónico</label>
+        <input id="email" type="email" formControlName="email" placeholder="correo@ejemplo.com" />
+        <small *ngIf="formulario.get('email')?.touched && formulario.get('email')?.hasError('required')">
+          Este campo es obligatorio.
+        </small>
+        <small *ngIf="formulario.get('email')?.touched && formulario.get('email')?.hasError('email')">
+          Ingresa un correo válido.
+        </small>
+      </div>
+
+      <div class="field-group">
+        <label for="mensaje">Mensaje</label>
+        <textarea
+          id="mensaje"
+          rows="6"
+          formControlName="mensaje"
+          placeholder="Escribe tu mensaje..."
+        ></textarea>
+        <small *ngIf="formulario.get('mensaje')?.touched && formulario.get('mensaje')?.invalid">
+          El mensaje debe tener al menos 10 caracteres.
+        </small>
+      </div>
+
+      <button type="submit" class="submit-btn">Enviar mensaje</button>
+
+      <div class="success-message" *ngIf="enviado">
+        Mensaje enviado correctamente. Nos pondremos en contacto pronto.
+      </div>
+    </form>
+
+    <aside class="contact-card">
+      <h3>Información de contacto</h3>
+      <ul>
+        <li>{{ contactInfo.email }}</li>
+        <li>{{ contactInfo.phone }}</li>
+        <li *ngFor="let city of contactInfo.cities">{{ city }}</li>
+      </ul>
+    </aside>
+  </div>
+</section>
