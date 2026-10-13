@@ -1,38 +1,34 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NavItem, SiteInfo } from '../../models/site-info';
 
+// Encabezado global: fecha actual, marca y menú de navegación.
+// Recibe los datos desde el componente raíz (App) mediante @Input.
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnDestroy {
-  navItems = [
-    { label: 'Inicio', path: '/' },
-    { label: 'Noticias', path: '/noticias' },
-    { label: 'Favoritos', path: '/favoritos' },
-    { label: 'Contacto', path: '/contacto' },
-    { label: 'Gestión', path: '/gestionar-noticias' },
-  ];
+  // Datos de la marca (nombre, eslogan, ciudad).
+  @Input({ required: true }) siteInfo!: SiteInfo;
 
-  currentDate = this.getCurrentDate();
-  private timerId?: number;
+  // Enlaces del menú principal.
+  @Input() navItems: NavItem[] = [];
 
-  constructor() {
-    this.timerId = window.setInterval(() => {
-      this.currentDate = this.getCurrentDate();
-    }, 60000);
-  }
+  // Signal: al llamar a set() Angular actualiza la vista aunque el cambio venga de un setInterval.
+  readonly currentDate = signal(this.getCurrentDate());
+  private readonly timerId = window.setInterval(() => {
+    this.currentDate.set(this.getCurrentDate());
+  }, 60000);
 
+  // Detiene el temporizador cuando el componente se destruye.
   ngOnDestroy(): void {
-    if (this.timerId) {
-      window.clearInterval(this.timerId);
-    }
+    window.clearInterval(this.timerId);
   }
 
+  // Devuelve la fecha actual en español, por ejemplo "martes, 13 de octubre de 2026".
   private getCurrentDate(): string {
     return new Intl.DateTimeFormat('es-CO', {
       weekday: 'long',

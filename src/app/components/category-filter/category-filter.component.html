@@ -1,0 +1,12 @@
+<div class="filters" role="group" aria-label="Filtrar por categoría">
+  @for (categoria of categorias; track categoria) {
+    <button
+      type="button"
+      [class.active]="seleccionada === categoria"
+      [attr.aria-pressed]="seleccionada === categoria"
+      (click)="seleccionar(categoria)"
+    >
+      {{ categoria }}
+    </button>
+  }
+</div>

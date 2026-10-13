@@ -1,9 +1,9 @@
 <div class="app-shell">
-  <app-header></app-header>
+  <app-header [siteInfo]="siteInfo" [navItems]="navItems" />
 
   <main class="page-shell">
-    <router-outlet></router-outlet>
+    <router-outlet />
   </main>
 
-  <app-footer></app-footer>
+  <app-footer [siteInfo]="siteInfo" [navItems]="navItems" />
 </div>

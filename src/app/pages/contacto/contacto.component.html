@@ -6,24 +6,25 @@
   </div>
 
   <div class="contact-layout">
-    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="contact-form">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="contact-form" novalidate>
       <div class="field-group">
         <label for="nombre">Nombre</label>
         <input id="nombre" type="text" formControlName="nombre" placeholder="Tu nombre" />
-        <small *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.invalid">
-          Este campo es obligatorio.
-        </small>
+        @if (formulario.controls.nombre.touched && formulario.controls.nombre.invalid) {
+          <small>Este campo es obligatorio.</small>
+        }
       </div>
 
       <div class="field-group">
         <label for="email">Correo electrónico</label>
         <input id="email" type="email" formControlName="email" placeholder="correo@ejemplo.com" />
-        <small *ngIf="formulario.get('email')?.touched && formulario.get('email')?.hasError('required')">
-          Este campo es obligatorio.
-        </small>
-        <small *ngIf="formulario.get('email')?.touched && formulario.get('email')?.hasError('email')">
-          Ingresa un correo válido.
-        </small>
+        @if (formulario.controls.email.touched) {
+          @if (formulario.controls.email.hasError('required')) {
+            <small>Este campo es obligatorio.</small>
+          } @else if (formulario.controls.email.hasError('email')) {
+            <small>Ingresa un correo válido.</small>
+          }
+        }
       </div>
 
       <div class="field-group">
@@ -34,24 +35,30 @@
           formControlName="mensaje"
           placeholder="Escribe tu mensaje..."
         ></textarea>
-        <small *ngIf="formulario.get('mensaje')?.touched && formulario.get('mensaje')?.invalid">
-          El mensaje debe tener al menos 10 caracteres.
-        </small>
+        @if (formulario.controls.mensaje.touched && formulario.controls.mensaje.invalid) {
+          <small>El mensaje debe tener al menos 10 caracteres.</small>
+        }
       </div>
 
       <button type="submit" class="submit-btn">Enviar mensaje</button>
 
-      <div class="success-message" *ngIf="enviado">
-        Mensaje enviado correctamente. Nos pondremos en contacto pronto.
-      </div>
+      @if (enviado) {
+        <div class="success-message" role="status">
+          Mensaje enviado correctamente. Nos pondremos en contacto pronto.
+        </div>
+      }
     </form>
 
     <aside class="contact-card">
       <h3>Información de contacto</h3>
       <ul>
-        <li>{{ contactInfo.email }}</li>
-        <li>{{ contactInfo.phone }}</li>
-        <li *ngFor="let city of contactInfo.cities">{{ city }}</li>
+        <li>
+          <a [href]="'mailto:' + contactInfo.email">{{ contactInfo.email }}</a>
+        </li>
+        <li>{{ contactInfo.telefono }}</li>
+        @for (sede of contactInfo.sedes; track sede) {
+          <li>{{ sede }}</li>
+        }
       </ul>
     </aside>
   </div>

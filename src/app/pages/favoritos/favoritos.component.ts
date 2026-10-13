@@ -1,24 +1,24 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NewsCardComponent } from '../../components/news-card/news-card.component';
 import { Noticia } from '../../models/noticia';
 import { NoticiasService } from '../../services/noticias.service';
 
+// Página /favoritos: muestra las noticias que el usuario guardó.
+// Escucha el @Output (favoritoCambiado) de cada tarjeta para refrescar la lista al quitar un favorito.
 @Component({
   selector: 'app-favoritos',
-  standalone: true,
-  imports: [CommonModule, RouterLink, NewsCardComponent],
+  imports: [RouterLink, NewsCardComponent],
   templateUrl: './favoritos.component.html',
   styleUrl: './favoritos.component.css',
 })
 export class FavoritosComponent {
-  noticias: Noticia[] = [];
+  private readonly noticiasService = inject(NoticiasService);
 
-  constructor(private readonly noticiasService: NoticiasService) {
-    this.noticias = this.noticiasService.getFavoritos();
-  }
+  // Noticias marcadas como favoritas.
+  noticias: Noticia[] = this.noticiasService.getFavoritos();
 
+  // Vuelve a leer los favoritos guardados (se llama cuando una tarjeta emite favoritoCambiado).
   actualizarLista(): void {
     this.noticias = this.noticiasService.getFavoritos();
   }

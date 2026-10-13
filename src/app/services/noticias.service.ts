@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CategoriaNoticia, Noticia } from '../models/noticia';
+import { Noticia } from '../models/noticia';
 
 // Servicio central del proyecto.
 // Aquí se guardan, consultan y gestionan las noticias y los favoritos del periódico.
@@ -16,10 +16,11 @@ export class NoticiasService {
   }
 
   // Carga las noticias desde localStorage o crea la base inicial si no existe ningún dato.
+  // Una lista vacía guardada se respeta: si el usuario eliminó todas las noticias, no se recargan las de ejemplo.
   private loadInitialData(): Noticia[] {
     const savedNews = this.getStorageValue<Noticia[]>(this.storageKey);
 
-    if (savedNews && savedNews.length > 0) {
+    if (Array.isArray(savedNews)) {
       return savedNews;
     }
 
@@ -79,7 +80,8 @@ export class NoticiasService {
       {
         id: 5,
         titulo: 'Programas de mentoría fortalecen el talento estudiantil',
-        descripcion: 'Un enfoque cercano ayuda a estudiantes a desarrollar habilidades profesionales.',
+        descripcion:
+          'Un enfoque cercano ayuda a estudiantes a desarrollar habilidades profesionales.',
         contenido:
           'Las experiencias de mentoría conectan a jóvenes con profesionales de la industria y fomentan el desarrollo de competencias clave. Estos programas permiten un acompañamiento más cercano, orientado a la práctica y a la construcción de redes laborales.',
         categoria: 'Educación',
@@ -115,7 +117,9 @@ export class NoticiasService {
 
   // Retorna las noticias destacadas para la página principal.
   getFeatured(): Noticia[] {
-    return this.getAll().filter((noticia) => noticia.destacado).slice(0, 3);
+    return this.getAll()
+      .filter((noticia) => noticia.destacado)
+      .slice(0, 3);
   }
 
   // Busca una noticia por su ID para mostrar el detalle.
@@ -153,8 +157,8 @@ export class NoticiasService {
       titulo: noticia.titulo ?? 'Nueva noticia',
       descripcion: noticia.descripcion ?? 'Sin descripción disponible.',
       contenido: noticia.contenido ?? 'Sin contenido adicional.',
-      categoria: (noticia.categoria as CategoriaNoticia) ?? 'General',
-      fecha: noticia.fecha ?? new Date().toISOString().slice(0, 10),
+      categoria: noticia.categoria ?? 'General',
+      fecha: noticia.fecha ?? this.fechaLocalHoy(),
       autor: noticia.autor ?? 'Equipo editorial',
       imagen:
         noticia.imagen ??
@@ -175,6 +179,14 @@ export class NoticiasService {
     const favoritos = this.getStorageValue<number[]>(this.favoritesKey) ?? [];
     const nextFavorites = favoritos.filter((favoritoId) => favoritoId !== id);
     this.saveToStorage(this.favoritesKey, nextFavorites);
+  }
+
+  // Fecha de hoy en formato YYYY-MM-DD según la hora local (toISOString usaría UTC y podría dar el día siguiente).
+  private fechaLocalHoy(): string {
+    const hoy = new Date();
+    const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+    const dia = String(hoy.getDate()).padStart(2, '0');
+    return `${hoy.getFullYear()}-${mes}-${dia}`;
   }
 
   // Lee información almacenada en localStorage.

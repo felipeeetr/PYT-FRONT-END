@@ -1,32 +1,32 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SITE_INFO } from '../../models/site-info';
 
+// Página /contacto: formulario reactivo con validaciones y datos de contacto del periódico.
 @Component({
   selector: 'app-contacto',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './contacto.component.html',
   styleUrl: './contacto.component.css',
 })
 export class ContactoComponent {
+  private readonly fb = inject(FormBuilder);
+
+  // Datos de contacto del periódico (misma fuente que el footer).
+  readonly contactInfo = SITE_INFO;
+  // Controla la visibilidad del mensaje de éxito.
   enviado = false;
-  formulario: FormGroup;
-  contactInfo = {
-    email: 'contacto@notiweb.com',
-    phone: '+57 300 000 0000',
-    cities: ['Bogotá, Colombia', 'Medellín, Colombia'],
-  };
 
-  constructor(private readonly fb: FormBuilder) {
-    this.formulario = this.fb.group({
-      nombre: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      mensaje: ['', [Validators.required, Validators.minLength(10)]],
-    });
-  }
+  // Formulario reactivo con las validaciones de cada campo.
+  formulario = this.fb.nonNullable.group({
+    nombre: ['', [Validators.required, Validators.pattern(/\S/)]],
+    email: ['', [Validators.required, Validators.email]],
+    mensaje: ['', [Validators.required, Validators.minLength(10)]],
+  });
 
+  // Valida el formulario y simula el envío del mensaje.
   onSubmit(): void {
+    this.enviado = false;
     this.formulario.markAllAsTouched();
 
     if (this.formulario.invalid) {

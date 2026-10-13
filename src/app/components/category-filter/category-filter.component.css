@@ -1,0 +1,21 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.filters button {
+  border: 1px solid rgba(17, 24, 39, 0.18);
+  background: #f6f7f8;
+  color: #1f2937;
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filters button.active {
+  background: #b23d2f;
+  border-color: #b23d2f;
+  color: #fff;
+}
