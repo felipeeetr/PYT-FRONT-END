@@ -193,6 +193,20 @@ npm run format   # formatea el código con Prettier
 - Las fechas se muestran en español (locale `es-CO`, registrado en `app.config.ts`).
 - El proyecto está pensado como una base sencilla, clara y apropiada para un trabajo académico de frontend.
 
+## Despliegue en GitHub Pages
+
+La app se publica en **https://felipeeetr.github.io/PYT-FRONT-END/** mediante GitHub Actions
+(`.github/workflows/deploy-pages.yml`). Cada push a `main`:
+
+1. instala dependencias con `npm ci`;
+2. compila con `ng build --base-href /PYT-FRONT-END/` (la app vive en esa subruta);
+3. copia `index.html` como `404.html` para que recargar rutas como `/noticias` funcione;
+4. publica `dist/pyt-front-end/browser` en GitHub Pages.
+
+Configuración necesaria (una sola vez, la hace un administrador del repositorio):
+**Settings → Pages → Build and deployment → Source: GitHub Actions**.
+También se puede lanzar manualmente desde la pestaña **Actions → Desplegar en GitHub Pages → Run workflow**.
+
 ## Autor
 
 Proyecto desarrollado como ejercicio académico de frontend con Angular.
