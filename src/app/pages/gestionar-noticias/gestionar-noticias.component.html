@@ -6,41 +6,83 @@
   </div>
 
   <div class="admin-grid">
-    <form [formGroup]="formulario" (ngSubmit)="guardarNoticia()" class="admin-form">
+    <form [formGroup]="formulario" (ngSubmit)="guardarNoticia()" class="admin-form" novalidate>
       <div class="field-group">
         <label for="titulo">Título</label>
-        <input id="titulo" type="text" formControlName="titulo" />
+        <input
+          id="titulo"
+          type="text"
+          formControlName="titulo"
+          [class.invalid]="esInvalido('titulo')"
+        />
+        @if (esInvalido('titulo')) {
+          <small>El título es obligatorio.</small>
+        }
       </div>
 
       <div class="field-group">
         <label for="categoria">Categoría</label>
         <select id="categoria" formControlName="categoria">
-          <option value="Educación">Educación</option>
-          <option value="Tecnología">Tecnología</option>
-          <option value="Turismo">Turismo</option>
-          <option value="Comercio">Comercio</option>
-          <option value="General">General</option>
+          @for (categoria of categorias; track categoria) {
+            <option [value]="categoria">{{ categoria }}</option>
+          }
         </select>
       </div>
 
       <div class="field-group">
         <label for="descripcion">Descripción breve</label>
-        <textarea id="descripcion" rows="3" formControlName="descripcion"></textarea>
+        <textarea
+          id="descripcion"
+          rows="3"
+          formControlName="descripcion"
+          [class.invalid]="esInvalido('descripcion')"
+        ></textarea>
+        @if (esInvalido('descripcion')) {
+          <small>La descripción debe tener al menos 20 caracteres.</small>
+        }
       </div>
 
       <div class="field-group">
         <label for="contenido">Contenido completo</label>
-        <textarea id="contenido" rows="5" formControlName="contenido"></textarea>
+        <textarea
+          id="contenido"
+          rows="5"
+          formControlName="contenido"
+          [class.invalid]="esInvalido('contenido')"
+        ></textarea>
+        <span class="char-count"
+          >{{ formulario.controls.contenido.value.length }} / 50 caracteres mínimo</span
+        >
+        @if (esInvalido('contenido')) {
+          <small>El contenido debe tener al menos 50 caracteres.</small>
+        }
       </div>
 
       <div class="field-group">
         <label for="autor">Autor</label>
-        <input id="autor" type="text" formControlName="autor" />
+        <input
+          id="autor"
+          type="text"
+          formControlName="autor"
+          [class.invalid]="esInvalido('autor')"
+        />
+        @if (esInvalido('autor')) {
+          <small>El autor es obligatorio.</small>
+        }
       </div>
 
       <div class="field-group">
         <label for="imagen">URL de imagen</label>
-        <input id="imagen" type="url" formControlName="imagen" />
+        <input
+          id="imagen"
+          type="url"
+          formControlName="imagen"
+          placeholder="https://..."
+          [class.invalid]="esInvalido('imagen')"
+        />
+        @if (esInvalido('imagen')) {
+          <small>Ingresa una URL válida que empiece por http:// o https://.</small>
+        }
       </div>
 
       <label class="checkbox-row">
@@ -49,19 +91,35 @@
       </label>
 
       <button type="submit" class="submit-btn">Guardar noticia</button>
+
+      @if (guardada) {
+        <div class="success-message" role="status">Noticia guardada correctamente.</div>
+      }
     </form>
 
     <div class="admin-list">
-      <h2>Noticias actuales</h2>
-      <ul>
-        <li *ngFor="let noticia of noticias">
-          <div>
-            <strong>{{ noticia.titulo }}</strong>
-            <span>{{ noticia.categoria }}</span>
-          </div>
-          <button type="button" (click)="eliminarNoticia(noticia.id)">Eliminar</button>
-        </li>
-      </ul>
+      <h2>Noticias actuales ({{ noticias.length }})</h2>
+      @if (noticias.length > 0) {
+        <ul>
+          @for (noticia of noticias; track noticia.id) {
+            <li>
+              <div>
+                <strong>{{ noticia.titulo }}</strong>
+                <span>{{ noticia.categoria }}</span>
+              </div>
+              <button
+                type="button"
+                [attr.aria-label]="'Eliminar ' + noticia.titulo"
+                (click)="eliminarNoticia(noticia)"
+              >
+                Eliminar
+              </button>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="empty-note">No hay noticias publicadas. Crea la primera con el formulario.</p>
+      }
     </div>
   </div>
 </section>

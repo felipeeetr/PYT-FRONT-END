@@ -4,28 +4,35 @@
 </section>
 
 <section class="container toolbar">
-  <div class="filters">
-    <button
-      *ngFor="let categoria of categorias"
-      type="button"
-      [class.active]="categoriaSeleccionada === categoria"
-      (click)="cambiarCategoria(categoria)"
-    >
-      {{ categoria }}
-    </button>
-  </div>
+  <!-- Two-way binding entre componentes: [(seleccionada)] = @Input + @Output -->
+  <app-category-filter [categorias]="categorias" [(seleccionada)]="categoriaSeleccionada" />
 
   <div class="search-box">
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar noticia..." />
+    <input
+      type="search"
+      [(ngModel)]="searchTerm"
+      placeholder="Buscar noticia..."
+      aria-label="Buscar noticia"
+    />
   </div>
 </section>
 
 <section class="container results">
-  <p>{{ noticiasFiltradas.length }} noticias encontradas</p>
+  <p>
+    {{ noticiasFiltradas.length }}
+    {{ noticiasFiltradas.length === 1 ? 'noticia encontrada' : 'noticias encontradas' }}
+  </p>
 </section>
 
 <section class="container">
   <div class="news-grid">
-    <app-news-card *ngFor="let noticia of noticiasFiltradas" [noticia]="noticia"></app-news-card>
+    @for (noticia of noticiasFiltradas; track noticia.id) {
+      <app-news-card [noticia]="noticia" />
+    } @empty {
+      <div class="empty-state">
+        <p>No hay noticias que coincidan con tu búsqueda.</p>
+        <button type="button" class="clear-btn" (click)="limpiarFiltros()">Limpiar filtros</button>
+      </div>
+    }
   </div>
 </section>

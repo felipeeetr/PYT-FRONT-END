@@ -36,7 +36,7 @@
   color: #b23d2f;
   font-size: 1.35rem;
   cursor: pointer;
-  box-shadow: 0 10px 18px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
 }
 
 .favorite-toggle.active {
@@ -96,4 +96,25 @@
   padding: 0.8rem 1.2rem;
   font-weight: 700;
   margin-top: auto;
+}
+
+/* Colores por categoría, aplicados con class binding desde categoriaClass. */
+.news-card__category.cat-educacion {
+  background: rgba(37, 99, 235, 0.1);
+  color: #1d4ed8;
+}
+
+.news-card__category.cat-tecnologia {
+  background: rgba(124, 58, 237, 0.1);
+  color: #6d28d9;
+}
+
+.news-card__category.cat-turismo {
+  background: rgba(5, 150, 105, 0.1);
+  color: #047857;
+}
+
+.news-card__category.cat-comercio {
+  background: rgba(217, 119, 6, 0.12);
+  color: #b45309;
 }

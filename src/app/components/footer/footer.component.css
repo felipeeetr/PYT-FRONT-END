@@ -12,8 +12,29 @@
   padding: 48px 0 16px;
 }
 
-.brand--footer {
+.footer__brand {
+  display: grid;
+  gap: 4px;
   margin-bottom: 18px;
+}
+
+.footer__brand strong {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2rem;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+
+.footer__brand strong span {
+  color: #d7a557;
+}
+
+.site-footer .footer__brand small {
+  color: #d7a557;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .site-footer p,

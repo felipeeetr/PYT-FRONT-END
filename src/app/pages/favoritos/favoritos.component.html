@@ -4,16 +4,19 @@
   <p>Consulta las historias que más te interesan y accede a su detalle cuando quieras.</p>
 </section>
 
-<section class="container" *ngIf="noticias.length > 0; else emptyState">
-  <div class="news-grid">
-    <app-news-card *ngFor="let noticia of noticias" [noticia]="noticia"></app-news-card>
-  </div>
-</section>
-
-<ng-template #emptyState>
+@if (noticias.length > 0) {
+  <section class="container">
+    <div class="news-grid">
+      @for (noticia of noticias; track noticia.id) {
+        <!-- Property binding hacia el hijo y event binding desde el hijo (@Output) -->
+        <app-news-card [noticia]="noticia" (favoritoCambiado)="actualizarLista()" />
+      }
+    </div>
+  </section>
+} @else {
   <section class="container empty-state">
     <h2>Aún no tienes favoritos</h2>
     <p>Guarda alguna noticia para verla aquí más adelante.</p>
     <a class="primary-btn" routerLink="/noticias">Explorar noticias</a>
   </section>
-</ng-template>
+}
